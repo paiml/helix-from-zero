@@ -27,7 +27,7 @@ jobs:
         toolchain: ["1.95.0", "stable"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Rust toolchain
         # Pinned to a SHA per CB-953 (no floating action refs).
