@@ -1,0 +1,35 @@
+[workspace]
+members = ["crates/helix-client"]
+resolver = "2"
+exclude = ["target", "assets"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/paiml/helix-from-zero"
+homepage = "https://github.com/paiml/helix-from-zero"
+authors = ["Noah Gift <noah@paiml.com>"]
+rust-version = "1.95"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "deny"
+
+[workspace.lints.clippy]
+all = { level = "deny", priority = -1 }
+
+[workspace.dependencies]
+helix-client = { path = "crates/helix-client", version = "0.1.0" }
+
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+mockito = "1.7"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = "symbols"

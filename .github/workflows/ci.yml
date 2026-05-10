@@ -1,0 +1,73 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  RUSTFLAGS: "-D warnings"
+  RUST_MIN_STACK: "8388608"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate-matrix:
+    name: gate-matrix (${{ matrix.toolchain }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: ["1.95.0", "stable"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        # Pinned to a SHA per CB-953 (no floating action refs).
+        uses: dtolnay/rust-toolchain@4f366e621dc8fa63f557ca04b8f4361824a35a45
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          components: rustfmt, clippy, llvm-tools-preview
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: gate-${{ matrix.toolchain }}
+
+      - name: Install cargo-llvm-cov
+        if: matrix.toolchain == 'stable'
+        uses: taiki-e/install-action@cargo-llvm-cov
+
+      - name: cargo fmt --check
+        run: cargo fmt --all -- --check
+
+      - name: cargo clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: cargo test
+        run: cargo test --workspace
+
+      - name: Coverage gate (stable only)
+        if: matrix.toolchain == 'stable'
+        run: cargo llvm-cov --workspace --fail-under-lines 100
+
+  gate:
+    name: gate
+    runs-on: ubuntu-latest
+    needs: gate-matrix
+    if: always()
+    steps:
+      - name: Aggregate gate result
+        run: |
+          if [ "${{ needs.gate-matrix.result }}" != "success" ]; then
+            echo "gate-matrix did not succeed: ${{ needs.gate-matrix.result }}"
+            exit 1
+          fi
+          echo "All gates green."

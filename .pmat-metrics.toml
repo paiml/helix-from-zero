@@ -1,0 +1,14 @@
+# PMAT quality thresholds for helix-from-zero.
+# Mirrors paiml/rag-from-zero so cross-repo comparisons stay apples-to-apples.
+
+[quality]
+max_cyclomatic_complexity = 30
+max_cognitive_complexity = 25
+min_test_coverage = 100
+max_satd_comments = 5
+task_id_pattern = "PMAT-[0-9]{4}"
+
+[reproducibility]
+# Bronze + Cargo.lock + rust-toolchain.toml pinned channel = Silver.
+# (Gold needs sealed CI image + reproducible-build attestation.)
+target_level = "silver"

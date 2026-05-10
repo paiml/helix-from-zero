@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 480" width="1280" height="480"
+     role="img" aria-label="HelixDB from Zero — collapse the Postgres + Qdrant + Neo4j RAG stack into one HelixDB engine">
+<title>HelixDB from Zero — companion repo banner</title>
+<desc>Visual story: the typical RAG stack (Postgres + Qdrant + Neo4j) collapses into one HelixDB engine with type-safe HelixQL.</desc>
+<!-- HERO — paiml/helix-from-zero README banner.
+     Visual story: the typical RAG stack (Postgres + Qdrant + Neo4j —
+     three services, three pools, three transaction boundaries) ->
+     HelixDB (one engine, one query language, one process). Same
+     oxide-premium chassis as the c12 lesson masters and the
+     rag-from-zero hero, indigo/violet accent matching the c20
+     course branding. -->
+
+<defs>
+  <style>
+    .h { font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    .m { font-family: 'Cascadia Code', 'Fira Code', monospace; }
+    .label { font-family: 'Segoe UI', sans-serif; letter-spacing: 0.12em; }
+  </style>
+
+  <radialGradient id="bg" cx="50%" cy="40%" r="80%">
+    <stop offset="0%" stop-color="#1a2540"/>
+    <stop offset="100%" stop-color="#0e1726"/>
+  </radialGradient>
+  <linearGradient id="accent-strip" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%"  stop-color="#6366f1" stop-opacity="0.85"/>
+    <stop offset="50%" stop-color="#9c84ff" stop-opacity="0.85"/>
+    <stop offset="100%" stop-color="#36b37e" stop-opacity="0.85"/>
+  </linearGradient>
+  <radialGradient id="zone-stack" cx="50%" cy="50%" r="55%">
+    <stop offset="0%" stop-color="#ff5630" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#ff5630" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="zone-helix" cx="50%" cy="50%" r="55%">
+    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+  </radialGradient>
+  <marker id="arrow" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="strokeWidth">
+    <path d="M 0 0 L 12 7 L 0 14 Z" fill="#9c84ff"/>
+  </marker>
+</defs>
+
+<rect width="1280" height="480" fill="url(#bg)"/>
+
+<!-- Top accent strip -->
+<rect x="0" y="0" width="1280" height="6" fill="url(#accent-strip)"/>
+
+<!-- Title block — top center -->
+<g class="h">
+  <text x="60" y="92" font-size="44" font-weight="700" fill="#eeeeee">HelixDB from Zero</text>
+  <text x="60" y="128" font-size="20" fill="#a5d6ff" letter-spacing="0.05em">Rust for Data Engineering · graph + vector + KV + documents · one engine, one query language</text>
+  <text x="60" y="158" font-size="14" fill="#7ee787" letter-spacing="0.10em" font-weight="700">5 MODULES · 15 LESSONS · 4 RUNTIME CONTRACTS</text>
+</g>
+
+<!-- ======================================================== -->
+<!-- LEFT ZONE: The typical RAG stack (Postgres + Qdrant + Neo4j) -->
+<!-- ======================================================== -->
+<circle cx="290" cy="320" r="180" fill="url(#zone-stack)"/>
+<g id="typical-stack">
+  <text x="290" y="218" text-anchor="middle" class="label" font-size="13" font-weight="700" fill="#ff9d1a">TYPICAL RAG STACK · 3 SERVICES</text>
+
+  <!-- Postgres box -->
+  <rect x="120" y="240" width="100" height="64" rx="8" fill="#0e1726" stroke="#ff9d1a" stroke-width="2.5"/>
+  <rect x="120" y="240" width="100" height="22" rx="8" fill="#1a1d23" stroke="#ff9d1a" stroke-width="2"/>
+  <text x="170" y="256" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#ff9d1a">Postgres</text>
+  <text x="170" y="282" text-anchor="middle" class="m" font-size="10" fill="#a5d6ff">rows</text>
+  <text x="170" y="295" text-anchor="middle" class="m" font-size="9" fill="#b8acff">:5432</text>
+
+  <!-- Qdrant box -->
+  <rect x="240" y="240" width="100" height="64" rx="8" fill="#0e1726" stroke="#ff9d1a" stroke-width="2.5"/>
+  <rect x="240" y="240" width="100" height="22" rx="8" fill="#1a1d23" stroke="#ff9d1a" stroke-width="2"/>
+  <text x="290" y="256" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#ff9d1a">Qdrant</text>
+  <text x="290" y="282" text-anchor="middle" class="m" font-size="10" fill="#a5d6ff">vectors</text>
+  <text x="290" y="295" text-anchor="middle" class="m" font-size="9" fill="#b8acff">:6334</text>
+
+  <!-- Neo4j box -->
+  <rect x="360" y="240" width="100" height="64" rx="8" fill="#0e1726" stroke="#ff9d1a" stroke-width="2.5"/>
+  <rect x="360" y="240" width="100" height="22" rx="8" fill="#1a1d23" stroke="#ff9d1a" stroke-width="2"/>
+  <text x="410" y="256" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#ff9d1a">Neo4j</text>
+  <text x="410" y="282" text-anchor="middle" class="m" font-size="10" fill="#a5d6ff">graph</text>
+  <text x="410" y="295" text-anchor="middle" class="m" font-size="9" fill="#b8acff">:7687</text>
+
+  <!-- Three connection pool lines -->
+  <line x1="170" y1="320" x2="170" y2="360" stroke="#ff5630" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="290" y1="320" x2="290" y2="360" stroke="#ff5630" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="410" y1="320" x2="410" y2="360" stroke="#ff5630" stroke-width="2" stroke-dasharray="3,3"/>
+
+  <text x="290" y="380" text-anchor="middle" class="m" font-size="11" fill="#ff9d1a">3 pools · 3 schemas · 3 txn boundaries</text>
+  <text x="290" y="397" text-anchor="middle" class="m" font-size="11" fill="#ff9d1a">SQL · gRPC · Cypher</text>
+
+  <text x="290" y="425" text-anchor="middle" class="label" font-size="12" font-weight="700" fill="#ff9d1a">STITCHED AT THE APP LAYER</text>
+</g>
+
+<!-- Center connector arrow: "collapse the stack" -->
+<g id="connector">
+  <line x1="490" y1="320" x2="610" y2="320" stroke="#9c84ff" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="550" y="306" text-anchor="middle" class="label" font-size="11" font-weight="700" fill="#b8acff">COLLAPSE</text>
+  <text x="550" y="338" text-anchor="middle" class="label" font-size="11" fill="#9c84ff">3 hops → 1</text>
+</g>
+
+<!-- ======================================================== -->
+<!-- RIGHT ZONE: HelixDB — one engine, one query language       -->
+<!-- ======================================================== -->
+<circle cx="930" cy="320" r="180" fill="url(#zone-helix)"/>
+<g id="helix-unified">
+  <text x="930" y="218" text-anchor="middle" class="label" font-size="13" font-weight="700" fill="#6366f1">HELIXDB · ONE ENGINE</text>
+
+  <rect x="640" y="240" width="580" height="160" rx="10" fill="#0e1726" stroke="#6366f1" stroke-width="3"/>
+  <rect x="640" y="240" width="580" height="32" rx="10" fill="#1a1d23" stroke="#6366f1" stroke-width="2.5"/>
+  <circle cx="660" cy="256" r="5" fill="#36b37e"/>
+  <circle cx="677" cy="256" r="5" fill="#9c84ff"/>
+  <circle cx="694" cy="256" r="5" fill="#6366f1"/>
+  <text x="1206" y="262" text-anchor="end" class="m" font-size="14" font-weight="700" fill="#6366f1">helix push dev</text>
+
+  <!-- Four data shapes inside one engine -->
+  <rect x="660" y="290" width="124" height="44" rx="6" fill="#1a2540" stroke="#6366f1" stroke-width="2"/>
+  <text x="722" y="308" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#a5d6ff">N::Type</text>
+  <text x="722" y="324" text-anchor="middle" class="m" font-size="10" fill="#b8acff">graph nodes</text>
+
+  <rect x="794" y="290" width="124" height="44" rx="6" fill="#1a2540" stroke="#6366f1" stroke-width="2"/>
+  <text x="856" y="308" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#a5d6ff">V::Type</text>
+  <text x="856" y="324" text-anchor="middle" class="m" font-size="10" fill="#b8acff">vectors [F64]</text>
+
+  <rect x="928" y="290" width="124" height="44" rx="6" fill="#1a2540" stroke="#6366f1" stroke-width="2"/>
+  <text x="990" y="308" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#a5d6ff">E::Type</text>
+  <text x="990" y="324" text-anchor="middle" class="m" font-size="10" fill="#b8acff">typed edges</text>
+
+  <rect x="1062" y="290" width="138" height="44" rx="6" fill="#1a2540" stroke="#6366f1" stroke-width="2"/>
+  <text x="1131" y="308" text-anchor="middle" class="m" font-size="11" font-weight="700" fill="#a5d6ff">KV + Docs</text>
+  <text x="1131" y="324" text-anchor="middle" class="m" font-size="10" fill="#b8acff">on the same LMDB</text>
+
+  <!-- Bottom row: HelixQL primitives -->
+  <text x="660" y="358" class="m" font-size="11" fill="#7ee787">QUERY get(name: String) =&gt;</text>
+  <text x="660" y="374" class="m" font-size="11" fill="#a5d6ff">  N&lt;User&gt;({name})::Out&lt;Knows&gt;::WHERE(...)::ORDER&lt;Asc&gt;::RANGE(0, 10)</text>
+  <text x="660" y="390" class="m" font-size="11" fill="#b8acff">  · SearchV&lt;Embedding&gt;(vec, k) · ShortestPathDijkstras&lt;Route&gt;(...)::To(end)</text>
+
+  <text x="930" y="425" text-anchor="middle" class="label" font-size="12" font-weight="700" fill="#6366f1">TYPE-SAFE HELIXQL · LMDB · BUILT-IN MCP</text>
+</g>
+
+<!-- Bottom contracts strip -->
+<g id="contracts-strip">
+  <rect x="60" y="448" width="1160" height="22" rx="4" fill="#161b22" stroke="#7ee787" stroke-width="1.5" fill-opacity="0.85"/>
+  <text x="80" y="464" class="h" font-size="12" font-weight="700" fill="#7ee787">Provable contracts:</text>
+  <text x="232" y="464" class="m" font-size="12" fill="#eeeeee">hits.len() == k  ·  top.score ≥ 0  ·  film.id &gt; 0  ·  pairwise descending sort   |   github.com/paiml/helix-from-zero</text>
+</g>
+
+<!-- GRID PROTOCOL MANIFEST
+  template: HERO (README banner)
+  canvas: 1280x480
+  zones: typical-stack@(290,320) | connector@(550,320) | helix@(930,320)
+  text_elements: 32
+  palette_colors: [#0e1726, #1a2540, #1a1d23, #161b22, #6366f1, #9c84ff, #b8acff, #a5d6ff, #36b37e, #7ee787, #ff9d1a, #ff5630, #eeeeee]
+  bounds_check: all elements within 0,0 → 1280,480
+-->
+</svg>

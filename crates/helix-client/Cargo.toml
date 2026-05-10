@@ -1,0 +1,28 @@
+[package]
+name = "helix-client"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Typed Rust client for HelixDB HTTP endpoints (companion to course 20)"
+exclude = ["assets/**", ".github/**", "docs/**"]
+
+[lints]
+workspace = true
+
+[dependencies]
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tokio.workspace = true
+mockito.workspace = true
+
+[[example]]
+name = "list_top_films"
+path = "examples/list_top_films.rs"
