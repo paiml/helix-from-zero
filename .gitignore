@@ -1,0 +1,25 @@
+# Helix CLI artifacts
+.helix/
+*.log
+
+# Editor / OS
+.DS_Store
+*.swp
+*.tmp
+.idea/
+.vscode/
+
+# Rust (in case the iteration-3 Rust client demo lands here)
+/target
+**/*.rs.bk
+Cargo.lock.bak
+
+# Coverage
+*.profraw
+lcov.info
+/coverage/
+
+# pmat / pv local caches
+.pmat/
+.pv/
+**/.pv/
